@@ -37,4 +37,3 @@ every minute in "world":
 		set {avhfarm} to 0
 		execute console command "/bossbar set minecraft:farm visible false"
 		execute console command "/gamerule randomTickSpeed 3"
-		le randomTickSpeed 3"
