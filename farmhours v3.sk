@@ -41,7 +41,7 @@ every minute in "world":
 		set {avhfarm} to 0
 		execute console command "/bossbar set minecraft:farm visible false"
 		execute console command "/gamerule randomTickSpeed 3"
-		execute console command "/bc  Fin de l'heure de farm !"
+		execute console command "/bc  Début de l'heure de farm !"
 		
 command /fm reset:
 	trigger:
@@ -50,3 +50,4 @@ command /fm reset:
 		message "§cLes valeurs ont été reset"
 		execute console command "/bossbar set minecraft:farm value 0"
 		execute console command "/bossbar set minecraft:farm visible false"
+		execute console command "/gamerule randomTickSpeed 3"
