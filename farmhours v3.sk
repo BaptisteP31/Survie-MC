@@ -1,0 +1,51 @@
+on skript load:
+	set {fh} to false
+	set {avhfarm} to 0
+
+every minute in "world":
+	set {_day} to now formatted with "HH:mm"
+		
+	if {_day} is "10:00":
+		execute console command "/bc  Début de l'heure de farm !"
+		execute console command "/gamerule randomTickSpeed 10"
+		execute console command "/bossbar set minecraft:farm value 0"
+		execute console command "/bossbar set minecraft:farm visible true"
+		set {avhfarm} to 0
+		set {fh} to true
+		
+	if {_day} is "16:00":
+		execute console command "/bc  Début de l'heure de farm !"
+		execute console command "/gamerule randomTickSpeed 10"
+		execute console command "/bossbar set minecraft:farm value 0"
+		execute console command "/bossbar set minecraft:farm visible true"
+		set {avhfarm} to 0
+		set {fh} to true
+		
+	if {_day} is "21:00":
+		execute console command "/bc  Début de l'heure de farm !"
+		execute console command "/gamerule randomTickSpeed 10"
+		execute console command "/bossbar set minecraft:farm value 0"
+		execute console command "/bossbar set minecraft:farm visible true"
+		set {avhfarm} to 0
+		set {fh} to true
+
+every minute in "world":
+	
+	if {fh} is true:
+		if {avhfarm} < 60:
+			add 1 to {avhfarm}
+			execute console command "/bossbar set minecraft:farm value %{avhfarm}%"
+			stop
+	if {avhfarm} = 60:
+		set {fh} to false
+		set {avhfarm} to 0
+		execute console command "/bossbar set minecraft:farm visible false"
+		execute console command "/gamerule randomTickSpeed 3"
+		
+command /fm reset:
+	trigger:
+		set {fh} to false
+		set {avhfarm} to 0
+		message "§cLes valeurs ont été reset"
+		execute console command "/bossbar set minecraft:farm value 0"
+		execute console command "/bossbar set minecraft:farm visible false"
