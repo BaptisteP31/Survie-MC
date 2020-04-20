@@ -14,8 +14,7 @@ my_logger.addHandler(handler)
 my_logger.debug('Discordbot : Start of script')
 
 
-bot = commands.Bot(command_prefix='!')
-
+bot = commands.Bot(command_prefix='$')
 
 
 
@@ -26,9 +25,8 @@ async def on_ready():
     print("avec l""'""ID :")
     print(bot.user.id)
     print('------------------')
-
-
-
+    game = discord.Game("préfixe ""'$'""")
+    await bot.change_presence(status=discord.Status.online, activity=game)
 
 
 
@@ -37,55 +35,18 @@ bot.remove_command('help')
 @bot.command()
 async def help(ctx):
     try:
-        await ctx.send("Coucou\nJe suis MemeAlpha\nun gentil lapin farceur !\nVoici l'aide :\n")
-        embed=discord.Embed(title="Aide", color=0xff0080)
-        embed.add_field(name="!help", value="Affiche cette aide", inline=False)
-        embed.add_field(name="!nuke", value="Affiche un GIF de nuke", inline=False)
-        embed.add_field(name="!dog", value="Je n'aime pas les chiens. Fonction qui vous kick.", inline=False)
-        embed.add_field(name="!what", value="Affiche un GIF 'WHAT' aléatoire", inline=False)
-        embed.add_field(name="!think", value="Affiche un GIF de réflexion aléatoire", inline=False)
-        embed.add_field(name="!yes", value="Affiche un GIF d'acquiessement aléatoire", inline=False)
-        embed.add_field(name="!no", value="Affiche un GIF de négation aléatoire", inline=False)
-        embed.add_field(name="!hacker", value="Affiche un GIF de h@ck3r aléatoire", inline=False)
-        embed.add_field(name="!miaou -- VOCAL", value="Miaule dans le channel vocal", inline=False)
-        embed.add_field(name="!miaou_angry -- VOCAL", value="OCTOGONE DE CHATS", inline=False)
-        embed.add_field(name="!maisoui -- VOCAL", value="Réflexion nucléaire des rollers.", inline=False)
-        embed.add_field(name="!nani -- VOCAL", value="You are already dead.", inline=False)
-        await ctx.send(embed=embed)
-    except Exception as e:
-        print(str(e))
-        my_logger.debug(str(e))
-
-
-
-# commande d'aide vocale
-bot.remove_command('helpvoc')
-@bot.command()
-async def helpvoc(ctx):
-    try:
-        await ctx.send("Coucou\nJe suis MemeAlpha\nun gentil lapin farceur !\nVoici l'aide :\n")
-        embed=discord.Embed(title="Aide", color=0xff0080)
-        embed.add_field(name="!miaou -- VOCAL", value="Miaule dans le channel vocal", inline=False)
-        embed.add_field(name="!miaou_angry -- VOCAL", value="OCTOGONE DE CHATS", inline=False)
-        embed.add_field(name="!maisoui -- VOCAL", value="Réflexion nucléaire des rollers.", inline=False)
-        embed.add_field(name="!nani -- VOCAL", value="You are already dead.", inline=False)
-        await ctx.send(embed=embed)
-    except Exception as e:
-        print(str(e))
-        my_logger.debug(str(e))
-
-
-
-# commande d'aide admin
-bot.remove_command('helpadmin')
-@bot.command()
-async def helpadmin(ctx):
-    try:
-        await ctx.send("Coucou\nJe suis MemeAlpha\nun gentil lapin farceur !\nVoici l'aide :\n")
-        embed=discord.Embed(title="Aide", color=0xff0080)
-        embed.add_field(name="!accept @user  -- ADMINS", value="Permet d'attribuer le rÃle chaton", inline=False)
-        embed.add_field(name="!ban @user  -- ADMINS", value="Permet de bannir un utilisateur", inline=False)
-        embed.add_field(name="!clear <int>  -- ADMINS", value="Permet de nettoyer les messages d'un channel", inline=False)
+        await ctx.send("Voici l'aide :")
+        embed=discord.Embed(title="Aide", color=808080)
+        embed.add_field(name="?help", value="Affiche cette aide", inline=False)
+        embed.add_field(name="?assassin", value="Affiche la description du rôle **Assassin**", inline=False)
+        embed.add_field(name="?detective", value="Affiche la description du rôle **Détective**", inline=False)
+        embed.add_field(name="?traitre", value="Affiche la description du rôle **Traître**", inline=False)
+        embed.add_field(name="?parrain", value="Affiche la description du rôle **Parrain**", inline=False)
+        embed.add_field(name="?sousfifre", value="Affiche la description du rôle **Sous Fifre**", inline=False)
+        embed.add_field(name="?infirmier", value="Affiche la description du rôle **Infirmier**", inline=False)
+        embed.add_field(name="?vengeur", value="Affiche la description du rôle **Vengeur**", inline=False)
+        embed.add_field(name="?tueur", value="Affiche la description du rôle **Tueur**", inline=False)
+        embed.add_field(name="?bruh + valeur -- STAFF ONLY", value="Nettoie tout le tchat si aucun nombre n'est spécifié. Pour définir un nombre de messages à supprimer il faut mettre une valeur", inline=False)
         await ctx.send(embed=embed)
     except Exception as e:
         print(str(e))
@@ -107,44 +68,132 @@ async def honteux(ctx):
         my_logger.debug(str(e))
 
 
+
+# commande d'aide assassin
+bot.remove_command('assassin')
 @bot.command()
-async def maisoui(ctx):
+async def assassin(ctx):
     try:
-        channel = ctx.message.author.voice.channel
-        vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio("home/pi/bot/sound/clair.mp3"), after=lambda e: print('done', e))
-        await asyncio.sleep(3)
-        await vc.disconnect()
+        await ctx.send("Voici la description du rôle __**Assassin**__ :")
+        embed=discord.Embed(title="Aide **Assassin**", color=0xFF0000)
+        embed.add_field(name="Nombre :", value="3", inline=False)
+        embed.add_field(name="Description :", value="Ils peuvent tuer n’importe qui, même l’un d’entre eux.", inline=False)
+        await ctx.send(embed=embed)
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
 
 
 
+# commande d'aide détective
+bot.remove_command('detective')
 @bot.command()
-async def nani(ctx):
+async def detective(ctx):
     try:
-        channel = ctx.message.author.voice.channel
-        vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio("/root/nani.mp3"), after=lambda e: print('done', e))
-        await asyncio.sleep(3)
-        await vc.disconnect()
+        await ctx.send("Voici la description du rôle __**Détective**__ :")
+        embed=discord.Embed(title="Aide **Détective**", color=993300)
+        embed.add_field(name="Nombre :", value="2", inline=False)
+        embed.add_field(name="Description :", value="Les détectives doivent trouver et démasquer les assassins. Ils devront trouver trois objets pour recevoir un indice et un pistolet nerf sera caché quelque part. Leur but sera de le trouver pour tirer les balle qui seront cachées dans la même maison.", inline=False)
+        await ctx.send(embed=embed)
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
 
 
+
+# commande d'aide traître
+bot.remove_command('traitre')
 @bot.command()
-async def miaou_angry(ctx):
+async def traitre(ctx):
     try:
-        channel = ctx.message.author.voice.channel
-        vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio("/root/angry.mp3"), after=lambda e: print('done', e))
-        await asyncio.sleep(4)
-        await vc.disconnect()
+        await ctx.send("Voici la description du rôle __**Traître**__ :")
+        embed=discord.Embed(title="Aide **Traître**", color=000000)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="Peut tuer 1 personne. N'ayant pas d'équipiers, son but est de gagner la partie seul. Ou avec villageois si lui + 2 villageois. Il a la possibilité de tuer deux personnes grâce à des balles qu’il devra trouver dans la maison.", inline=False)
+        await ctx.send(embed=embed)
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
+
+
+
+# commande d'aide parrain
+bot.remove_command('parrain')
+@bot.command()
+async def parrain(ctx):
+    try:
+        await ctx.send("Voici la description du rôle __**Parrain**__ :")
+        embed=discord.Embed(title="Aide **Parrain**", color=0x003300)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="Peut désigner un sous fifre et tuer s’il tue quelqu’un, il se suicide. Si son sous fifre meurt, il peut le rejoindre sans se faire tuer au bout de deux minutes pour qu’il lui révèle le nom de son assassin. Du coup + 1 kill.", inline=False)
+        await ctx.send(embed=embed)
+    except Exception as e:
+        print(str(e))
+        my_logger.debug(str(e))      
+
+
+
+# commande d'aide sous fifre
+bot.remove_command('sousfifre')
+@bot.command()
+async def sousfifre(ctx):
+    try:
+        await ctx.send("Voici la description du rôle __**Sous Fifre**__ :")
+        embed=discord.Embed(title="Aide **Sous Fifre**", color=0x006600)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="Remplace l’ancien rôle du joueur s'il tue quelqu'un après être désigné par le parrain. il n’a le droit que de tuer ses cibles. Il peut tuer jusqu’à 3 personnes.", inline=False)
+        await ctx.send(embed=embed)
+    except Exception as e:
+        print(str(e))
+        my_logger.debug(str(e))      
+
+
+
+# commande d'aide infirmier
+bot.remove_command('infirmier')
+@bot.command()
+async def infirmier(ctx):
+    try:
+        await ctx.send("Voici la description du rôle __**Infirmier**__ :")
+        embed=discord.Embed(title="Aide **Infirmier**", color=0xFF3366)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="A le pouvoir de réanimer une personne grâce à un objet qu’il devra trouver durant la partie.", inline=False)
+        await ctx.send(embed=embed)
+    except Exception as e:
+        print(str(e))
+        my_logger.debug(str(e))      
+
+
+
+# commande d'aide protecteur
+bot.remove_command('vengeur')
+@bot.command()
+async def vengeur(ctx):
+    try:
+        await ctx.send("Voici la description du rôle __**Vengeur**__ :")
+        embed=discord.Embed(title="Aide **Vengeur**", color=0x0000FF)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="Désigne une personne en qui il a confiance. Si cette personne meurt, il pourra la rejoindre en 5 minute pour récolter le nom de son assassin et la venger.", inline=False)
+        await ctx.send(embed=embed)
+    except Exception as e:
+        print(str(e))
+        my_logger.debug(str(e))   
+
+
+
+# commande d'aide tueur
+bot.remove_command('tueur')
+@bot.command()
+async def tueur(ctx):
+    try:
+        await ctx.send("Voici la description du rôle __**Tueur en série**__ :")
+        embed=discord.Embed(title="Aide **Tueur**", color=0xFFCC66)
+        embed.add_field(name="Nombre :", value="1", inline=False)
+        embed.add_field(name="Description :", value="Peut tuer n’importe qui et doit finir la partie seul il peut s’allier avec la personne de son choix pour gagner la partie a deux.", inline=False)
+        await ctx.send(embed=embed)
+    except Exception as e:
+        print(str(e))
+        my_logger.debug(str(e)) 
 
 
 
@@ -157,94 +206,6 @@ async def ping(ctx):
 
 
 
-
-
-# commandes giphy - on creer un tableau de liens giphy et on pioche un random
-@bot.command()
-async def cat(ctx):
-    chats=["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif","http://giphygifs.s3.amazonaws.com/media/13CoXDiaCcCoyk/giphy.gif","https://media.giphy.com/media/Q94xQWspTUkShljj8P/giphy.gif","https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif","https://media.giphy.com/media/5i7umUqAOYYEw/giphy.gif","https://media.giphy.com/media/GFHJXPCoVQEec/giphy.gif","https://media.giphy.com/media/3oEdvbAVPeVsPDQL5u/giphy.gif","https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif","https://media.giphy.com/media/QyJ0We4GHpjBa7PvKL/giphy.gif","https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif","https://media.giphy.com/media/NjevnbNiUmeLm/giphy.gif","https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif","http://giphygifs.s3.amazonaws.com/media/nR4L10XlJcSeQ/giphy.gif","https://media.giphy.com/media/jRlP4zbERYW5HoCLvX/giphy.gif"]
-    thisone = random.choice(chats)
-    await ctx.send(str(thisone))
-
-@bot.command()
-async def dog(ctx):
-    await ctx.author.kick(reason="Miaou")
-    await ctx.send("NON.")
-
-@bot.command()
-async def what(ctx):
-    whats =["https://media.giphy.com/media/puOukoEvH4uAw/giphy.gif", "https://media.giphy.com/media/oOTTyHRHj0HYY/giphy.gif", "https://media.giphy.com/media/CiYImHHBivpAs/giphy.gif", "https://media.giphy.com/media/g9SURfIJouBck/giphy.gif", "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif", "https://media.giphy.com/media/xL7PDV9frcudO/giphy.gif"]
-    thisone = random.choice(whats)
-    await ctx.send(str(thisone))
-
-@bot.command()
-async def think(ctx):
-    thinks =["https://media.giphy.com/media/BmmfETghGOPrW/giphy.gif", "https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif", "https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif", "https://media.giphy.com/media/21I1WOUDnct4EmSNa6/giphy.gif", "https://media.giphy.com/media/Caey86HvbOPuPwHrsx/giphy.gif", "https://media.giphy.com/media/dJ4vNQ7r72pb4nDhN5/giphy.gif"]
-    thisone = random.choice(thinks)
-    await ctx.send(str(thisone))
-
-@bot.command()
-async def yes(ctx):
-    yess = ["https://media.giphy.com/media/yFs12GkGa4Cpq/giphy.gif","http://giphygifs.s3.amazonaws.com/media/nFjDu1LjEADh6/giphy.gif","https://media.giphy.com/media/WQr2txk5iEYUS6Kv3d/giphy.gif","http://giphygifs.s3.amazonaws.com/media/NEvPzZ8bd1V4Y/giphy.gif","https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif","https://media.giphy.com/media/oGO1MPNUVbbk4/giphy.gif"]
-    thisone = random.choice(yess)
-    await ctx.send(str(thisone))
-
-@bot.command()
-async def no(ctx):
-    nos = ["http://giphygifs.s3.amazonaws.com/media/12XMGIWtrHBl5e/giphy.gif","https://media.giphy.com/media/eKrgVyZ7zLvJrgZNZn/giphy.gif","https://media.giphy.com/media/wYyTHMm50f4Dm/giphy.gif","https://media.giphy.com/media/pLcgO003rbeo0/giphy.gif","http://giphygifs.s3.amazonaws.com/media/g69ZPJfLy7hD2/giphy.gif","https://media.giphy.com/media/26tPlltsuA89RwYww/giphy.gif","https://media.giphy.com/media/kE8bAdv1AKdSqJf2Rw/giphy.gif","http://giphygifs.s3.amazonaws.com/media/8NQ7T1ExRuMz6/giphy.gif","https://media.giphy.com/media/23BST5FQOc8k8/giphy.gif"]
-    thisone = random.choice(nos)
-    await ctx.send(str(thisone))
-
-@bot.command()
-async def hacker(ctx):
-    hackers = ["https://media.giphy.com/media/YQitE4YNQNahy/giphy.gif","https://media.giphy.com/media/UqxVRm1IaaIGk/giphy.gif","https://media.giphy.com/media/TOWeGr70V2R1K/giphy.gif","https://media.giphy.com/media/ZvLUtG6BZkBi0/giphy.gif","https://media.giphy.com/media/QNFhOolVeCzPQ2Mx85/giphy.gif","https://media.giphy.com/media/VbAFrrDVGAvZu/giphy.gif","https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif","http://giphygifs.s3.amazonaws.com/media/rMS1sUPhv95f2/giphy.gif","https://media.giphy.com/media/3oriNLx3dUqFgVi86I/giphy.gif","https://media.giphy.com/media/9kSM4y028LvvW/giphy.gif","http://giphygifs.s3.amazonaws.com/media/eCqFYAVjjDksg/giphy.gif","https://media.giphy.com/media/eDmCKa8Wd3MUU/giphy.gif","https://media.giphy.com/media/13UZisxBxkjPwI/giphy.gif","https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif"]
-    thisone = random.choice(hackers)
-    await ctx.send(str(thisone))
-
-
-
-@bot.command()
-async def excusetoi(ctx):
-    await ctx.send("Pardon :(")
-
-
-# commande pour passer un utilisateur en chaton
-# uniquement pour veto et secretaire
-@bot.command(pass_context=True)
-async def accept(ctx, member: discord.Member):
-    try:
-        # role veto ou secretaire uniquement
-        for role in ctx.author.roles:
-            if str(role.id) == str(Humains) or str(role.id) == str(Humains):
-                print(member)
-                role = discord.utils.get(member.guild.roles, id=ALL)
-                print(role)
-                await member.add_roles(role)
-                await ctx.send(str(member)+" est devenu un petit chaton !")
-    except Exception as e:
-        print(str(e))
-        my_logger.debug(str(e))
-
-
-# commande pour ban un utilisateur
-@bot.command()
-async def ban(ctx, member: discord.Member):
-    try:
-        await ctx.send("Miaou !")
-        my_logger.debug('Discordbot : Ban demandé pour '+str(member))
-        if str(member) == "Ethandudu#4268":
-            await ctx.send("Le maitre des croquettes ne peut pas être banni !")
-        # role veto ou secretaire uniquement
-        for role in ctx.author.roles:
-            if str(role.id) == str(Humains) or str(role.id) == str(Humains):
-    	        my_logger.debug('Discorbot : '+str(member)+" a été banni !")
-    	        await member.ban(reason="Miaou")
-    	        await ctx.send(str(member)+" a été banni !")
-    except Exception as e:
-        print(str(e))
-        my_logger.debug(str(e))
-
-
 # commande de bienvenue - envoie un message a l'utilisateur dans le chan d'arrivee
 @bot.event
 async def on_member_join(member):
@@ -253,9 +214,8 @@ async def on_member_join(member):
         my_logger.debug('Discorbot : '+str(member)+"has joined")
         channel = member.guild.text_channels[0]
         await asyncio.sleep(2)
-        await member.send("Coucou !\n\nJe suis Minou le gentil chaton\nPour le moment seul le channel \#la-chatiere t'est accessible\nMerci de bien vouloir compléter cette présentation \n(directement dans le channel \#la-chatiere, pas ici !)\nafin qu'un modérateur valide ta candidature : \n\nTon âge : \nTes domaines de compétences (réseau, systèmes, web, dev) : \nDonne un compliment sur les chats : ")
-        await channel.send( member.mention + " has joined !")
-        await channel.send("Bienvenue !\n\nJe suis Minou le gentil chaton\nPour le moment seul ce channel t'est accessible\nMerci de bien vouloir compléter cette présentation\nafin qu'un modérateur valide ta candidature : \n\nTon âge : \nTes domaines de compétences (réseau, systèmes, web, dev) : \nDonne un compliment sur les chats : ")
+        await channel.send( member.mention + " est arrivé(e) !")
+        await channel.send("Bienvenue sur le serveur du **Murder Mystery** !\n https://media1.tenor.com/images/857a9fed91255db5d4960ebe32501bbc/tenor.gif")
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
@@ -266,30 +226,30 @@ async def on_member_join(member):
 async def on_member_remove(member):
     try:
         print(str(member)+"has quit")
-        my_logger.debug('Discorbot : '+str(member)+"has quit")
-        channel = member.guild.text_channels[1]
-        await channel.send(str(member)+" a quitté le serveur.\nY-a-t'il un soucis avec les croquettes ?")
+        my_logger.debug('Discorbot : '+str(member)+"a quitté(e)")
+        channel = member.guild.text_channels[0]
+        await channel.send(str(member)+" a quitté le serveur. Tu veux un octogone ?\n https://media1.tenor.com/images/84ef4bbad192d3f2c76c2e53052f0329/tenor.gif")
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
 
 
+
 # commande de nettoyage d'un channel - specifier le nb de lignes
 @bot.command(pass_context=True)
-async def clear(ctx, amount=100):
+async def bruh(ctx, amount=100):
     try:
         for role in ctx.author.roles:
-            if str(role.id) == str(Humains) or str(role.id) == str(Humains):
+            if str(role.id) == str(688430994579128337) or str(role.id) == str(688338602148757537):
                 channel=ctx.message.channel
                 messages=[]
                 async for message in channel.history(limit=int(amount)):
                     messages.append(message)
                 await channel.delete_messages(messages)
-                await ctx.send("La litière a été vidée.")
+                await ctx.send("Tchat nettoyé ! \n https://media1.tenor.com/images/92f0e076a76dbfc580b6483fbf692e6b/tenor.gif")
     except Exception as e:
         print(str(e))
         my_logger.debug(str(e))
-
 
 
 
