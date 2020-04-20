@@ -294,6 +294,6 @@ async def clear(ctx, amount=100):
 
 
 try:
-    bot.run("NjIzNTM1OTYwMTUxNTU2MTA2.XmzaOg.giCrML9qq2B0NnXHiw4FuDaCwKw")
+    bot.run("token")
 except KeyboardInterrupt:
         print("\n\n************************************\n\n")
