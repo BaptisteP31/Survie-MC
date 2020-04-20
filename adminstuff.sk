@@ -1,0 +1,68 @@
+command /admingui:
+	permission: admin.gui
+	permission message: &c Vous n'êtes pas admin
+	executable by: players
+	aliases: /ag
+	trigger:
+		open chest with 1 rows named "&e&lAdmin GUI" to player
+		format slot 0 of player with map named "&b&lsave-all" to close then run [execute console command "save-all"]
+		format slot 1 of player with redstone named "&6&lRestart" to close then run  [execute console command "rs"]
+		format slot 2 of player with compass named "&a&lTps" to close then run [make player execute command "gc"]
+		
+command /new <text>:
+	permission: admin.new
+	trigger:
+		execute console command "pex user %arg 1% group set Joueurs"
+		execute console command "eco give %arg 1% 100"
+		
+command /shopcreate <text> <text> <text>:
+	description: Commande permettant de creer un shop
+	Usage: &cVous vous êtes trompé dans l'utilisation de la commande, /shopcreate 'Nom du shop' 'Nom du joueur'
+	executable by: players
+	permission: shop.create
+	permission message: &cVous n'êtes pas autorisé à creer un shop, veuillez contacter un administrateur
+	aliases: /sc
+	trigger:
+		make player execute command "//expand vert"
+		make player execute command "rg create %arg 1%"
+		make player execute command "rg setpriority %arg 1% 10"
+		make player execute command "rg flag %arg 1% use -g owners allow"
+		make player execute command "rg flag %arg 1% passthrougt -g owners allow"
+		make player execute command "rg flag %arg 1% mob-damage -g owners deny"
+		make player execute command "rg flag %arg 1% lightning -g owners deny"
+		make player execute command "rg flag %arg 1% enderman-grief -g owners deny"
+		make player execute command "rg flag %arg 1% pvp -g owners deny"
+		make player execute command "rg flag %arg 1% creeper-explosion allow"
+		make player execute command "rg flag %arg 1% interact -g owners allow"
+		make player execute command "rg flag %arg 1% ride -g owners allow"
+		make player execute command "rg flag %arg 1% sleep -g owners allow"
+		make player execute command "rg flag %arg 1% vehicule-destroy -g owners allow"
+		make player execute command "rg flag %arg 1% build -g owners allow"
+		make player execute command "rg addmember %arg 1% %arg 2%"
+		make player execute command "rg addowner %arg 1% %arg 2%"
+		wait 5 ticks
+		make player execute command "rg info %arg 1%"
+		wait 10 ticks
+		make player execute command "eco take %arg 2% %arg 3%"
+		
+		message "[&cInfo&f] &a%argument 1% &fcréé avec succès pour le joueur &a%argument 2% &fpour la somme de &a%arg 3%&a€"
+
+command /shopremove <text>:
+	description: Commande pour supprimer un shop
+	Usage: &cVous vous êtes trompé dans l'utilisation de la commande, /shopremove 'Nom du shop'
+	executable by: players
+	permission: shop.remove
+	permission message: &cVous n'êtes pas autorisé à supprimer un shop, veuillez contacter un administrateur
+	aliases: /sr
+	trigger:
+		make player execute command "rg remove %arg 1%"
+		wait 5 ticks
+		message "[&cInfo&f] &a%argument 1% &fsupprimé avec succès"
+
+command /rs:
+	permission: admin.restart
+	trigger:
+		execute console command "bc Redémarrage du serveur dans 10 secondes"
+		execute console command "save-all"
+		wait 10 seconds
+		execute console command "restart"
